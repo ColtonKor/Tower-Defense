@@ -1,41 +1,47 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Enemy))]
 public class EnemyMovement : MonoBehaviour
 {
-    private Transform target;
-    private int wavepointIndex = 0;
-
-    private Enemy enemy;
-
+    public Transform target;
     void Start(){
-        enemy = GetComponent<Enemy>();
-        target = Waypoints.points[wavepointIndex];
+        var agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent.destination = target.position;
     }
+    // private int wavepointIndex = 0;
 
-    void Update(){
-        Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * enemy.speed  * Time.deltaTime, Space.World);
+    // private Enemy enemy;
 
-        if(Vector3.Distance(transform.position, target.position) <= 0.2f){
-            GetNextWaypoint();
-        }
-        enemy.speed = enemy.startSpeed; 
-    }
+    // void Start(){
+    //     enemy = GetComponent<Enemy>();
+    //     target = Waypoints.points[wavepointIndex];
+    // }
 
-    void GetNextWaypoint(){
-        if(wavepointIndex >= Waypoints.points.Length - 1){
-            EndPath();
-            return;
-        }
-        wavepointIndex++;
-        target = Waypoints.points[wavepointIndex];
-    }
+    // void Update(){
+    //     Vector3 dir = target.position - transform.position;
+    //     transform.Translate(dir.normalized * enemy.speed  * Time.deltaTime, Space.World);
 
-    void EndPath(){
+    //     if(Vector3.Distance(transform.position, target.position) <= 0.2f){
+    //         GetNextWaypoint();
+    //     }
+    //     enemy.speed = enemy.startSpeed; 
+    // }
+
+    // void GetNextWaypoint(){
+    //     if(wavepointIndex >= Waypoints.points.Length - 1){
+    //         EndPath();
+    //         return;
+    //     }
+    //     wavepointIndex++;
+    //     target = Waypoints.points[wavepointIndex];
+    // }
+
+    public void EndPath(GameObject enemy){
         PlayerStats.Lives--;
-        Destroy(gameObject);
+        WaveSpawner.EnemiesAlive--;
+        Destroy(enemy);
     }
 }

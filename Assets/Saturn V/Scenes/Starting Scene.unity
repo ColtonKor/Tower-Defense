@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 526092694}
   - component: {fileID: 526092693}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5039,7 +5039,7 @@ GameObject:
   - component: {fileID: 999067949}
   - component: {fileID: 999067948}
   m_Layer: 0
-  m_Name: PolyShape
+  m_Name: Launchpad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
